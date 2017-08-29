@@ -7,10 +7,6 @@ const Campuses = db.define('campuses', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  image: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   location: {
     type: Sequelize.STRING,
     allowNull: false

@@ -4,10 +4,10 @@ const Students = Models.Students;
 const db = require('./db/');
 
 const campuses = [
-    { name: 'Mars', image: 'image1', location: 'Chicago'},
-    { name: 'Tera', image: 'image2', location: 'Memphis'},
-    { name: 'Titan', image: 'image3', location: 'Boston'},
-    { name: 'Luna', image: 'image4', location: 'Milwaukee'}
+    { name: 'Mars', location: 'Chicago'},
+    { name: 'Tera', location: 'Memphis'},
+    { name: 'Titan', location: 'Boston'},
+    { name: 'Luna', location: 'Milwaukee'}
 ];
 
 const id = () => Math.round(Math.random() * (campuses.length - 1)) + 1;
@@ -49,10 +49,10 @@ Promise.all(students.map(student =>
 ));
 
 const runSeed = () => {
-console.log('Starting DB Seed');
+console.log('Starting DB Seed...');
 db.sync({ force: true })
   .then(() => {
-    console.log('Seeding in progress...');
+    console.log('DB Seeding Complete!!!');
     return seedData();
   })
   .catch(err => {

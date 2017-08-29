@@ -20,8 +20,8 @@ router.get('/:id', ((req, res, next) => {
       id: req.params.id
     }
   })
-    .then(campus => (
-      res.json(campus)
+    .then(campuses => (
+      res.json(campuses)
     ))
     .catch(next);
 }));
@@ -33,7 +33,6 @@ router.post('/', ((req, res, next) => {
       name: req.body.name
     },
     defaults: {
-      image: 'default image',
       location: req.body.location
     }
   })
