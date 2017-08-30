@@ -54,7 +54,7 @@ router.post('/', ((req, res, next) => {
 
 //update campus
 router.put('/', ((req, res, next) => {
-  Campuses.findOne({
+  return Campuses.findOne({
     where: {
       id: req.body.id
     }
@@ -63,9 +63,6 @@ router.put('/', ((req, res, next) => {
       campusToUpdate.update({
         location: req.body.location
       })
-    })
-    .then(() => {
-      res.json("updated")
     })
     .catch(next);
 }));

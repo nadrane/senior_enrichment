@@ -3,26 +3,28 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SingleStudent from './SingleStudent';
 import { HashRouter, Route } from 'react-router-dom';
+import store from '../store'
 
 export default class AllStudents extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      students: [],
-    };
+    this.state = store.getState()
   }
 
+
   componentDidMount () {
-    axios.get('/api/students/')
-      .then(res => {return res.data})
-      .then(students => {
-        this.setState({ students })
-      });
+    this.unsubscribe = store.subscribe(() =>
+      this.setState(store.getState())
+  );}
+
+  componentWillUnmount () {
+    this.unsubscribe();
   }
 
 
 render(){
+
   return(
     <HashRouter>
       <div>
@@ -32,7 +34,7 @@ render(){
           <hr />
           <ol className="list-group">
           {
-            this.state.students.map(student => {
+            this.state.students.students.map(student => {
               return (
                 <li key={student.id}>
                   <Link to={`/students/${student.id}`}>{student.name}</Link>
@@ -41,6 +43,7 @@ render(){
             })
           }
           </ol>
+          <p><Link to={'/createstudent'} className="btn">Create New Student</Link></p>
           <hr />
       </div>
      </HashRouter>

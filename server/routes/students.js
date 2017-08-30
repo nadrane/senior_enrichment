@@ -56,12 +56,12 @@ router.post('/', ((req, res, next) => {
 router.put('/', ((req, res, next) => {
   Students.findOne({
     where: {
-      id: req.body.studentId
+      id: req.body.id
     }
   })
     .then(studentToUpdate => {
       studentToUpdate.update({
-        campusId: req.body.newCampusId
+        location: req.body.location
       })
     })
     .then(() => {

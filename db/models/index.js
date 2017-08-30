@@ -11,11 +11,13 @@ const Students = require('./students');
 
 console.log(Students);
 
-Students.belongsTo(Campuses);
 Campuses.hasMany(Students);
+Students.belongsTo(Campuses);
 
 module.exports = {
 	User,
 	Campuses,
 	Students
 };
+
+

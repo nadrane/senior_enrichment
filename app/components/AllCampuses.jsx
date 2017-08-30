@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import SingleCampus from './SingleCampus';
-import { HashRouter, Route } from 'react-router-dom';
-import store, {fetchCampuses, fetchCampus, getCampuses} from '../store';
+import { HashRouter, Link } from 'react-router-dom';
+import store from '../store'
 
 
 export default class AllCampuses extends Component {
@@ -11,7 +9,6 @@ export default class AllCampuses extends Component {
 constructor(props) {
   super(props);
   this.state = store.getState();
-
 }
 
 componentDidMount () {
@@ -24,7 +21,7 @@ componentWillUnmount () {
 }
 
 render(){
-  const campuses = this.state.campuses;
+  const campuses = this.state.campuses.campuses;
   return (
     <HashRouter>
       <div>
@@ -33,15 +30,16 @@ render(){
         </div>
         <hr />
         <ol className="list-group">
-          {this.state.campuses.map(campus => {
-              return (
-                <li key={campus.id}>
-                  <Link value={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
-                </li>
-              );
-            })
+          {campuses.map(campus => {
+            return (
+              <li key={campus.id}>
+                <Link value={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
+              </li>
+            );
+          })
           }
         </ol>
+        <p><Link to={'/createcampus'} className="btn">Create New Campus</Link></p>
         <hr />
       </div>
     </HashRouter>
@@ -49,14 +47,4 @@ render(){
   }
 }
 
-// <ol className="list-group">
-// {
-//   this.state.campuses.map(campus => {
-//     return (
-//       <li key={campus.id}>
-//         <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
-//       </li>
-//     );
-//   })
-// }
-// </ol>
+
