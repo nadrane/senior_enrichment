@@ -13,40 +13,41 @@ export default class AllStudents extends Component {
   }
 
 
-  componentDidMount () {
+  componentDidMount() {
     this.unsubscribe = store.subscribe(() =>
       this.setState(store.getState())
-  );}
+    );
+    this.forceUpdate()
+  }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unsubscribe();
   }
 
 
-render(){
-
-  return(
-    <HashRouter>
-      <div>
-        <div className='header'>
-          <h1 className='header-heading'>Students</h1>
-        </div>
+  render() {
+    return (
+      <HashRouter>
+        <div>
+          <div className='header'>
+            <h1 className='header-heading'>Students</h1>
+          </div>
           <hr />
           <ol className="list-group">
-          {
-            this.state.students.students.map(student => {
-              return (
-                <li key={student.id}>
-                  <Link to={`/students/${student.id}`}>{student.name}</Link>
-                </li>
-              )
-            })
-          }
+            {
+              this.state.students.students.map(student => {
+                return (
+                  <li key={student.id}>
+                    <Link to={`/students/${student.id}`}>{student.name}</Link>
+                  </li>
+                )
+              })
+            }
           </ol>
           <p><Link to={'/createstudent'} className="btn">Create New Student</Link></p>
           <hr />
-      </div>
-     </HashRouter>
+        </div>
+      </HashRouter>
     )
   }
 }

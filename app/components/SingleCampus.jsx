@@ -49,13 +49,14 @@ export default class SingleCampus extends Component {
             {campusStudents.map(student => {
               return (
                 <li key={student.id}>
-                  {student.name}
+                  <Link to={`/students/${student.id}`}>{student.name}</Link>
                 </li>
               );
             })
             }
           </ol>
           <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
+          <p><Link to={'/addstudenttocampus'} className="btn">Add Student To Campus</Link></p>
           <p><a href="#" value ={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
 
           <hr />

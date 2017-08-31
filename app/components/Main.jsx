@@ -4,8 +4,10 @@ import AllStudents from './AllStudents';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
 import EditCampus from './EditCampus';
+import EditStudent from './EditStudent';
 import CreateCampus from './CreateCampus';
 import CreateStudent from './CreateStudent';
+import AddStudentToCampus from './AddStudentToCampus';
 import axios from 'axios';
 import { HashRouter, Route } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -13,13 +15,6 @@ import store, {fetchCampuses, fetchStudents} from '../store'
 
 export default class Main extends Component {
 
-  componentDidMount(){
-    const campusesThunk = fetchCampuses();
-    const studentsThunk = fetchStudents()
-    store.dispatch(campusesThunk);
-    store.dispatch(studentsThunk);
-    this.forceUpdate()
-  }
 
   render(){
     return (
@@ -34,8 +29,9 @@ export default class Main extends Component {
             <Route path='/students/:studentId' component={SingleStudent} />
             <Route exact path='/editcampus' component={EditCampus} />
             <Route exact path='/createcampus' component={CreateCampus} />
-            <Route exact path='/editstudent' component={SingleStudent} />
+            <Route exact path='/editstudent' component={EditStudent} />
             <Route exact path='/createstudent' component={CreateStudent} />
+            <Route exact path='/addstudenttocampus' component={AddStudentToCampus} />
           </div>
       </div>
     </HashRouter>

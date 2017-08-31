@@ -15,3 +15,4 @@ export * from './reducers/editCampus';
 export * from './reducers/createCampus';
 export * from './reducers/deleteStudent';
 export * from './reducers/createStudent';
+export * from './reducers/editStudent';

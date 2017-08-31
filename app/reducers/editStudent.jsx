@@ -2,36 +2,37 @@ import axios from 'axios';
 
 //INITIAL STATE
 const initialState = {
-  editCampus: '',
+  editStudent: '',
 };
 
 //ACTION TYPES
-const EDIT_CAMPUS = 'EDIT_CAMPUS';
+const EDIT_STUDENT = 'EDIT_STUDENT';
 
 
 //ACTION CREATORS
-export function editTheCampus () {
+export function editTheStudent () {
   return {
-    type: EDIT_CAMPUS
+    type: EDIT_STUDENT
   };
 }
 
 //THUNKS
-export function editCampus (campus) {
+export function editStudent (student) {
   return function thunk (dispatch){
-    return axios.put(`/api/campuses`, campus)
+    return axios.put(`/api/students`, student)
     .then(() => {
-      const action = editTheCampus();
+      const action = editTheStudent();
       dispatch(action);
     })
   }
 }
 
+
 // REDUCER
 export default function (prevState = initialState, action) {
   switch (action.type) {
-    case EDIT_CAMPUS:
-       return Object.assign({}, prevState, {editCampus: ''});
+    case EDIT_STUDENT:
+       return Object.assign({}, prevState, {editStudent: ''});
     default:
        return prevState;
   }

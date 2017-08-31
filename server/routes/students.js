@@ -61,7 +61,9 @@ router.put('/', ((req, res, next) => {
   })
     .then(studentToUpdate => {
       studentToUpdate.update({
-        location: req.body.location
+        name: req.body.name,
+        email: req.body.email,
+        campusId: req.body.campusId
       })
     })
     .then(() => {

@@ -7,6 +7,7 @@ import editCampus from './editCampus';
 import createCampus from './editCampus';
 import deleteStudent from './deleteStudent';
 import createStudent from './createStudent';
+import editStudent from './editStudent';
 
 export default combineReducers({
   campuses,
@@ -16,6 +17,7 @@ export default combineReducers({
   editCampus,
   createCampus,
   deleteStudent,
-  createStudent
+  createStudent,
+  editStudent
   });
 

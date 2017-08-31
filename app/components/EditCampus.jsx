@@ -28,6 +28,7 @@ export default class EditCampus extends Component {
     }
     store.dispatch(editCampus(editedCampus));
     event.preventDefault();
+    this.props.history.push('/')
   }
 
   render() {
