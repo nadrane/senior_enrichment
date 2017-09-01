@@ -57,7 +57,7 @@ router.delete('/:id', ((req, res, next) => {
       id: req.params.id
     }
   })
-    .then((deletedCampus) => {
+    .then(() => {
       res.json('campus deleted');
     })
     .catch(next);

@@ -9,8 +9,6 @@ const User = require('./user');
 const Campuses = require('./campuses');
 const Students = require('./students');
 
-console.log(Students);
-
 Campuses.hasMany(Students);
 Students.belongsTo(Campuses);
 

@@ -7,6 +7,7 @@
 2. 'npm install'
 3. 'npm run build-watch'
 4. 'npm run seed' to seed the DB
+5. Go to http://localhost:1337/ in your browser
 
 
 ##
