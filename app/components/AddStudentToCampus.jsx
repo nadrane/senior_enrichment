@@ -36,26 +36,26 @@ export default class AddStudentToCampus extends Component {
     const campus = this.state.singleCampus.selectedCampus;
     const students = this.state.students;
     return (
-        <div>
-          <div className="header">
-            <h1 className="header-heading">Add Student To Campus</h1>
-          </div>
-          <hr />
-          <h3>Current Campus:   {campus.name} </h3><br /><br />
-          <form onSubmit={this.handleEditStudent} >
-            <div className="form-group">
-              <label> Student to Add to Campus<br /> <br />
-                <select name='studentId'>
-                  {students.map((student) =>
-                    <option key={student.id} value={student.id}>{student.name}</option>
-                  )}
-                </select>
-              </label><br /><br />
-            </div>
-            <button type="submit" className="btn btn-default">Submit</button>
-          </form>
-          <hr />
+      <div>
+        <div className="header">
+          <h1 className="header-heading">Add Student To Campus</h1>
         </div>
+        <hr />
+        <h3>Current Campus:   {campus.name} </h3><br /><br />
+        <form onSubmit={this.handleEditStudent} >
+          <div className="form-group">
+            <label> Student to Add to Campus<br /> <br />
+              <select name='studentId'>
+                {students.map((student) =>
+                  <option key={student.id} value={student.id}>{student.name}</option>
+                )}
+              </select>
+            </label><br /><br />
+          </div>
+          <button type="submit" className="btn btn-default">Submit</button>
+        </form>
+        <hr />
+      </div>
     );
   }
 }

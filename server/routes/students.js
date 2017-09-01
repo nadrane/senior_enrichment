@@ -27,30 +27,13 @@ router.get('/:id', ((req, res, next) => {
 
 //add new student if it doesn't exist, otherwise update location
 router.post('/', ((req, res, next) => {
-  Students.findOrCreate({
-    where: {
-      name: req.body.name
-    },
-    defaults: {
-      email: req.body.email,
-      campusId: req.body.campusId
-    }
+  Students.create(req.body)
+  .then(student => {
+    res.json(student);
   })
-    .spread((student, created) => {
-      if (!created) {
-        return student.update({
-          email: req.body.email
-        })
-          .then((updatedStudent) => {
-            res.json(updatedStudent);
-          });
-      }
-      else {
-        res.json(student);
-      }
-    })
     .catch(next);
 }));
+
 
 //update student
 router.put('/', ((req, res, next) => {

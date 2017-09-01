@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import store, {createCampus} from '../store';
+import store, { createCampus } from '../store';
 
 export default class CreateCampus extends Component {
 
@@ -22,7 +22,6 @@ export default class CreateCampus extends Component {
 
   handleCreateCampus(event) {
     event.preventDefault();
-    console.log("This is the new campus")
     const newCampus = {
       name: event.target.name.value,
       location: event.target.location.value
@@ -35,35 +34,35 @@ export default class CreateCampus extends Component {
 
   render() {
     return (
-        <div>
-          <div className="header">
-            <h1 className="header-heading">Create New Campus</h1>
-          </div>
-          <hr />
-            <form onSubmit={this.handleCreateCampus}>
-            <div className="form-group">
-              <label>Campus Name
+      <div>
+        <div className="header">
+          <h1 className="header-heading">Create New Campus</h1>
+        </div>
+        <hr />
+        <form onSubmit={this.handleCreateCampus}>
+          <div className="form-group">
+            <label>Campus Name
               <input
                 name="name"
                 type="text"
                 className="form-control"
                 required
               />
-              </label>
-              <br />
-              <label>Campus Location
+            </label>
+            <br />
+            <label>Campus Location
               <input
-              name="location"
-              type="text"
-              className="form-control"
-              required
+                name="location"
+                type="text"
+                className="form-control"
+                required
               />
-              </label>
-            </div>
-              <button type="submit" className="btn btn-default">Submit</button>
-            </form>
-          <hr />
-        </div>
+            </label>
+          </div>
+          <button type="submit" className="btn btn-default">Submit</button>
+        </form>
+        <hr />
+      </div>
     );
   }
 }

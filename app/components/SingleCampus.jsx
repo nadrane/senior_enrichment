@@ -33,31 +33,31 @@ export default class SingleCampus extends Component {
   render() {
     const campus = this.state.singleCampus.selectedCampus;
     return (
-        <div>
-          <div className="header">
-            <h1 className="header-heading">Campus Details</h1>
-          </div>
-          <hr />
-          <h3>Campus Name:   {campus.name} </h3>
-          <h3>Campus Location:   {campus.location}</h3>
-          <h3>Enrolled Students:</h3>
-            <ol className="list-group">
-            {this.state.students.filter(student =>
-              campus.id === student.campusId).map(student => {
+      <div>
+        <div className="header">
+          <h1 className="header-heading">Campus Details</h1>
+        </div>
+        <hr />
+        <h3>Campus Name:   {campus.name} </h3>
+        <h3>Campus Location:   {campus.location}</h3>
+        <h3>Enrolled Students:</h3>
+        <ol className="list-group">
+          {this.state.students.filter(student =>
+            campus.id === student.campusId).map(student => {
               return (
                 <li key={student.id}>
                   <Link to={`/students/${student.id}`}>{student.name}</Link>
                 </li>
               );
             })
-            }
-            </ol>
-          <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
-          <p><Link to={'/addstudenttocampus'} className="btn">Add Student To Campus</Link></p>
-          <p><a href="#" value ={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
+          }
+        </ol>
+        <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
+        <p><Link to={'/addstudenttocampus'} className="btn">Add Student To Campus</Link></p>
+        <p><a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
 
-          <hr />
-        </div>
+        <hr />
+      </div>
     );
   }
 }

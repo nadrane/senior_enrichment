@@ -26,28 +26,11 @@ router.get('/:id', ((req, res, next) => {
     .catch(next);
 }));
 
-//add new campus if it doesn't exist, otherwise update location
+//add new campus
 router.post('/', ((req, res, next) => {
-  Campuses.findOrCreate({
-    where: {
-      name: req.body.name
-    },
-    defaults: {
-      location: req.body.location
-    }
-  })
-    .spread((campus, created) => {
-      if (!created) {
-        return campus.update({
-          location: req.body.location
-        })
-          .then((updatedCampus) => {
-            res.json(updatedCampus);
-          });
-      }
-      else {
-        res.json(campus);
-      }
+  Campuses.create(req.body)
+    .then((campus) => {
+      res.json(campus);
     })
     .catch(next);
 }));

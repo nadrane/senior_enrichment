@@ -10,8 +10,8 @@ export default class SingleCampus extends Component {
     };
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <nav className="navbar navbar-fixed-top navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import store, {editCampus} from '../store';
+import store, { editCampus } from '../store';
 
 export default class EditCampus extends Component {
 
@@ -35,29 +35,29 @@ export default class EditCampus extends Component {
   render() {
     const campus = this.state.singleCampus.selectedCampus;
     return (
-        <div>
-          <div className="header">
-            <h1 className="header-heading">Edit Campus Details</h1>
-          </div>
-          <hr />
-          <h3>Campus Name:   {campus.name} </h3>
-          <h3>Current Campus Location:   {campus.location}</h3>
-            <br />
-            <form onSubmit={this.handleEditCampus}>
-            <div className="form-group">
-              <label> Enter New Location:
+      <div>
+        <div className="header">
+          <h1 className="header-heading">Edit Campus Details</h1>
+        </div>
+        <hr />
+        <h3>Campus Name:   {campus.name} </h3>
+        <h3>Current Campus Location:   {campus.location}</h3>
+        <br />
+        <form onSubmit={this.handleEditCampus}>
+          <div className="form-group">
+            <label> Enter New Location:
               <input
                 name="location"
                 type="text"
                 className="form-control"
                 required
               />
-              </label>
-            </div>
-              <button type="submit" className="btn btn-default">Submit</button>
-            </form>
-          <hr />
-        </div>
+            </label>
+          </div>
+          <button type="submit" className="btn btn-default">Submit</button>
+        </form>
+        <hr />
+      </div>
     );
   }
 }

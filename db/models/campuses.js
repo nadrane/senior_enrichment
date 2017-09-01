@@ -22,8 +22,8 @@ Campuses.beforeDestroy((campus) => {
     .then(studentsInCampus => {
       return studentsInCampus.destroy;
     })
-    .then(output => {
-      console.log(output)
+    .then(deletedStudent => {
+      console.log(deletedStudent)
     });
 });
 
