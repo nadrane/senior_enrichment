@@ -62,7 +62,7 @@ router.put('/', ((req, res, next) => {
     .then(campusToUpdate => {
       campusToUpdate.update({
         location: req.body.location
-      })
+      });
     })
     .catch(next);
 }));

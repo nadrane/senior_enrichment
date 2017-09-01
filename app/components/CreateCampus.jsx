@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store, {createCampus} from '../store';
-import { Link } from 'react-router-dom';
 
 export default class CreateCampus extends Component {
 
@@ -22,6 +21,8 @@ export default class CreateCampus extends Component {
   }
 
   handleCreateCampus(event) {
+    event.preventDefault();
+    console.log("This is the new campus")
     const newCampus = {
       name: event.target.name.value,
       location: event.target.location.value

@@ -60,17 +60,33 @@ router.put('/', ((req, res, next) => {
     }
   })
     .then(studentToUpdate => {
-      studentToUpdate.update({
-        name: req.body.name,
-        email: req.body.email,
-        campusId: req.body.campusId
-      })
+      studentToUpdate.update(
+        req.body
+      )
     })
     .then(() => {
       res.json("updated")
     })
     .catch(next);
-}));
+  }))
+
+//update student campus
+router.put('/:id', ((req, res, next) => {
+  Students.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(studentToUpdate => {
+      studentToUpdate.update(
+        {campusId: req.body.campusId}
+      )
+    })
+    .then(() => {
+      res.json("updated")
+    })
+    .catch(next)
+}))
 
 // delete student
 router.delete('/:id', ((req, res, next) => {
@@ -83,5 +99,4 @@ router.delete('/:id', ((req, res, next) => {
       res.json("student deleted")
     })
     .catch(next);
-}));
-
+}))

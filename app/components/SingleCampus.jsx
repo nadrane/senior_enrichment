@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store, { fetchCampus, deleteCampus } from '../store';
-import { Link, HashRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default class SingleCampus extends Component {
@@ -25,18 +25,14 @@ export default class SingleCampus extends Component {
   }
 
   handleDeleteCampus() {
-    const campId = this.state.campuses.selectedCampus.id;
+    const campId = this.state.singleCampus.selectedCampus.id;
     store.dispatch(deleteCampus(campId));
+    this.props.history.push('/campuses');
   }
 
   render() {
-    const campus = this.state.campuses.selectedCampus;
-    const campusId = campus.id;
-    const campusStudents = this.state.students.students.filter(student =>
-      campusId === student.campusId
-    );
+    const campus = this.state.singleCampus.selectedCampus;
     return (
-      <HashRouter>
         <div>
           <div className="header">
             <h1 className="header-heading">Campus Details</h1>
@@ -45,8 +41,9 @@ export default class SingleCampus extends Component {
           <h3>Campus Name:   {campus.name} </h3>
           <h3>Campus Location:   {campus.location}</h3>
           <h3>Enrolled Students:</h3>
-          <ol className="list-group">
-            {campusStudents.map(student => {
+            <ol className="list-group">
+            {this.state.students.filter(student =>
+              campus.id === student.campusId).map(student => {
               return (
                 <li key={student.id}>
                   <Link to={`/students/${student.id}`}>{student.name}</Link>
@@ -54,15 +51,15 @@ export default class SingleCampus extends Component {
               );
             })
             }
-          </ol>
+            </ol>
           <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
           <p><Link to={'/addstudenttocampus'} className="btn">Add Student To Campus</Link></p>
           <p><a href="#" value ={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
 
           <hr />
         </div>
-      </HashRouter>
     );
   }
 }
+
 

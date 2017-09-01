@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store, {editCampus} from '../store';
-import { HashRouter, Link } from 'react-router-dom';
 
 export default class EditCampus extends Component {
 
@@ -22,19 +21,20 @@ export default class EditCampus extends Component {
   }
 
   handleEditCampus(event) {
+    event.preventDefault();
     const editedCampus = {
-      id: this.state.campuses.selectedCampus.id,
+      id: this.state.singleCampus.selectedCampus.id,
       location: event.target.location.value
     }
     store.dispatch(editCampus(editedCampus));
-    event.preventDefault();
-    this.props.history.push('/')
+    this.props.history.push('/campuses')
   }
 
+
+
   render() {
-    const campus = this.state.campuses.selectedCampus;
+    const campus = this.state.singleCampus.selectedCampus;
     return (
-      <HashRouter>
         <div>
           <div className="header">
             <h1 className="header-heading">Edit Campus Details</h1>
@@ -42,22 +42,22 @@ export default class EditCampus extends Component {
           <hr />
           <h3>Campus Name:   {campus.name} </h3>
           <h3>Current Campus Location:   {campus.location}</h3>
-          <h3>Enter New Location:   </h3>
+            <br />
             <form onSubmit={this.handleEditCampus}>
             <div className="form-group">
-              <label></label>
+              <label> Enter New Location:
               <input
                 name="location"
                 type="text"
                 className="form-control"
                 required
               />
+              </label>
             </div>
               <button type="submit" className="btn btn-default">Submit</button>
             </form>
           <hr />
         </div>
-      </HashRouter>
     );
   }
 }

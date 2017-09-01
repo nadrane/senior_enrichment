@@ -10,6 +10,7 @@ const Students = db.define('students', {
   email: {
     type: Sequelize.STRING,
     isEmail: true,
+    isUnique: true,
     allowNull: false
   },
   campusId: {

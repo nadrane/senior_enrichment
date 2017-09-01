@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import Navbar from './Navbar';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import SingleCampus from './SingleCampus';
@@ -9,32 +9,39 @@ import CreateCampus from './CreateCampus';
 import CreateStudent from './CreateStudent';
 import AddStudentToCampus from './AddStudentToCampus';
 import axios from 'axios';
-import { HashRouter, Route } from 'react-router-dom';
-import Navbar from './Navbar';
+import { Switch, Route } from 'react-router-dom';
+import React, { Component } from 'react';
 import store, {fetchCampuses, fetchStudents} from '../store'
 
 export default class Main extends Component {
 
+  componentWillMount(){
+    const studentsThunk = fetchStudents();
+    const campusesThunk = fetchCampuses();
+    store.dispatch(campusesThunk);
+    store.dispatch(studentsThunk);
+
+  }
 
   render(){
     return (
-    <HashRouter>
       <div  className="container">
       <Navbar />
           <div className='container'>
-            <Route exact path='/' component={AllCampuses} />
-            <Route exact path='/campuses' component={AllCampuses} />
-            <Route path='/campuses/:campusId' component={SingleCampus}/>
-            <Route exact path='/students' component={AllStudents} />
-            <Route path='/students/:studentId' component={SingleStudent} />
-            <Route exact path='/editcampus' component={EditCampus} />
-            <Route exact path='/createcampus' component={CreateCampus} />
-            <Route exact path='/editstudent' component={EditStudent} />
-            <Route exact path='/createstudent' component={CreateStudent} />
-            <Route exact path='/addstudenttocampus' component={AddStudentToCampus} />
+            <Switch>
+              <Route exact path='/' component={AllCampuses} />
+              <Route exact path='/campuses' component={AllCampuses} />
+              <Route path='/campuses/:campusId' component={SingleCampus}/>
+              <Route exact path='/students' component={AllStudents} />
+              <Route path='/students/:studentId' component={SingleStudent} />
+              <Route path='/editcampus' component={EditCampus} />
+              <Route path='/createcampus' component={CreateCampus} />
+              <Route path='/editstudent' component={EditStudent} />
+              <Route path='/createstudent' component={CreateStudent} />
+              <Route path='/addstudenttocampus' component={AddStudentToCampus} />
+            </Switch>
           </div>
       </div>
-    </HashRouter>
     )
   }
 }

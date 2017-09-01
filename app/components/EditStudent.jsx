@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store, { editStudent } from '../store';
-import { HashRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export default class EditStudent extends Component {
 
@@ -30,27 +30,23 @@ export default class EditStudent extends Component {
       email: event.target.email.value,
       campusId: event.target.campusId.value
     }
-    console.log("EDITTED STUDENT", editedStudent)
     store.dispatch(editStudent(editedStudent));
     this.props.history.push('/students')
   }
 
   render() {
     const student = this.state.singleStudent.selectedStudent;
-    const studentObj = Object.assign({}, student);
-    const campus = this.state.campuses.campuses.find( (campus) => student.campusId === campus.id);
-    const campusObj = Object.assign({}, campus);
-    const campuses = this.state.campuses.campuses;
+    const campus = this.state.campuses.find( (theCampus) => student.campusId === theCampus.id);
+    const campuses = this.state.campuses;
     return (
-      <HashRouter>
         <div>
           <div className="header">
             <h1 className="header-heading">Edit Student Details</h1>
           </div>
           <hr />
-          <h3>Current Student Name:   {studentObj.name} </h3>
-          <h3>Current Student Email:   {studentObj.email}</h3>
-          <h3>Current Student Campus:   {campusObj.name}</h3>
+          <h3>Current Student Name:   {student.name} </h3>
+          <h3>Current Student Email:   {student.email}</h3>
+          <h3>Current Student Campus:   {campus.name}</h3>
           <br />
           <br />
           <form onSubmit={this.handleEditStudent}>
@@ -91,7 +87,6 @@ export default class EditStudent extends Component {
           </form>
           <hr />
         </div>
-      </HashRouter>
     );
   }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store, {createStudent} from '../store';
-import { Link } from 'react-router-dom';
 
 export default class CreateStudent extends Component {
 
@@ -34,7 +33,7 @@ export default class CreateStudent extends Component {
   }
 
   render() {
-    const campuses = this.state.campuses.campuses;
+    const campuses = this.state.campuses;
     return (
         <div>
           <div className="header">
