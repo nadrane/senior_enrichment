@@ -28,6 +28,7 @@ export function fetchCampuses() {
         const action = getCampuses(campuses);
         dispatch(action);
       });
+      //catch your promises!
   }
 }
 
@@ -39,6 +40,7 @@ export function createCampus(campus) {
         const action = createTheCampus(newCampus);
         dispatch(action);
       })
+      //catch your promises!
   }
 }
 

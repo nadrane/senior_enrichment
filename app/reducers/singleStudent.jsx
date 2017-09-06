@@ -86,6 +86,7 @@ export function deleteStudent(studentId) {
 export default function (prevState = initialState, action) {
   switch (action.type) {
     case SELECTED_SINGLE_STUDENT:
+    // Same comments apply here
       return Object.assign({}, prevState, { selectedStudent: action.student[0] });
     case EDIT_STUDENT:
       return prevState;

@@ -36,6 +36,9 @@ router.post('/', ((req, res, next) => {
 }));
 
 //update campus
+
+//It would be more RESTful to accept the id in the uri. like this
+//router.put('/:id', ((req, res, next) => {
 router.put('/', ((req, res, next) => {
   return Campuses.findOne({
     where: {
@@ -43,10 +46,12 @@ router.put('/', ((req, res, next) => {
     }
   })
     .then(campusToUpdate => {
-      campusToUpdate.update({
+      return campusToUpdate.update({  //Make sure to return your promise!
         location: req.body.location
       });
     })
+    .then(updatedCampus => res.json(updatedCampus))
+    //And make sure that you send back the updated campus
     .catch(next);
 }));
 

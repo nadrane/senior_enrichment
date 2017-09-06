@@ -66,7 +66,16 @@ export function fetchCampus(campusId) {
 export default function (prevState = { selectedCampus: {} }, action) {
   switch (action.type) {
     case SELECTED_SINGLE_CAMPUS:
+    // I don't think we need to merge state here.
+    // we intend to just replace the entirety of the old campus with the new one, right?
+    // We don't want to blend state from the two campuses I don't think. That's what
+    // Object.assign does.
+    // will return { selectedCampus: action.campus[0] } work?
+    // or better yet, can we just return action.campus[0]?
+    // Also, why are we dispatching an array of campuses? Why do  we need to index action.campus at all?
       return Object.assign({}, prevState, { selectedCampus: action.campus[0] });
+
+      //These just aren't implemented I think?
     case EDIT_CAMPUS:
       return prevState;
     case DELETE_CAMPUS:

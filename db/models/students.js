@@ -13,6 +13,8 @@ const Students = db.define('students', {
     isUnique: true,
     allowNull: false
   },
+
+  //This field will automatically be added by the association! No need to include it
   campusId: {
     type: Sequelize.INTEGER,
     allowNull: false

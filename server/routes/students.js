@@ -43,7 +43,7 @@ router.put('/', ((req, res, next) => {
     }
   })
     .then(studentToUpdate => {
-      studentToUpdate.update(
+      studentToUpdate.update(  // return me!
         req.body
       )
     })
@@ -54,6 +54,10 @@ router.put('/', ((req, res, next) => {
   }))
 
 //update student campus
+// This route is just for updating the campus association of the student
+// A more RESTful url might be PUT /students/:id/campus
+// Notice that it's super confusing that we have two PUT urls, one that takes an ID and one that doesn't
+// but which are otherwise identical
 router.put('/:id', ((req, res, next) => {
   Students.findOne({
     where: {
@@ -61,11 +65,16 @@ router.put('/:id', ((req, res, next) => {
     }
   })
     .then(studentToUpdate => {
+      // Let's use the Sequelize magic methods instead
+      // Also, don't forget to return your promise, otherwise we send back
+      // "updated" before the update ever happens
+      // return studentToUpdate.setCampus(req.body.campusId);
       studentToUpdate.update(
         {campusId: req.body.campusId}
       )
     })
     .then(() => {
+      // Return the updated student
       res.json("updated")
     })
     .catch(next)

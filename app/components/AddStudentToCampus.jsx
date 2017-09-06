@@ -50,7 +50,7 @@ export default class AddStudentToCampus extends Component {
                   <option key={student.id} value={student.id}>{student.name}</option>
                 )}
               </select>
-            </label><br /><br />
+            </label><br /><br /> {/*eeek don't style in HTML <br> is not allowed from here on out */}
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
         </form>

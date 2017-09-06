@@ -27,7 +27,10 @@ export default class CreateCampus extends Component {
       location: event.target.location.value
     }
     store.dispatch(createCampus(newCampus));
-    event.preventDefault();
+    event.preventDefault();  // we did this a few lines up
+
+    // Maybe do this once the async event (inside the thunk) finishes
+    // We want to display the new campus when we go to the homepage, right?
     this.props.history.push('/')
 
   }
